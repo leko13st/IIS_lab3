@@ -16,5 +16,10 @@ namespace lab3_FrameProject
         {
             InitializeComponent();
         }
+
+        private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
