@@ -29,7 +29,7 @@ namespace lab3_FrameProject
             Frame[] FrameList = fm.GetFrameList();
             int[] ListReason = new int[FrameList.Length];
 
-            if ((isContain("звук") || isContain("звуч")) && (isContain("плох") || isContain("стран")) && !isContain("спик"))
+            if ((isContain("звук") || isContain("звуч") || isContain("шум") || isContain("писк")) && (isContain("плох") || isContain("стран")) && !isContain("спик"))
                 ListReason[3]++;
             if (isContain("лаг"))
             {
@@ -47,7 +47,7 @@ namespace lab3_FrameProject
                 ListReason[5] += 2;
             if ((isContain("плох") || isContain("черн") || isContain("чёрн")) && (isContain("изобр") || isContain("качеств") || isContain("экран")))
                 ListReason[5]++;
-            if (isContain("не включ") || isContain("не раб") && (isContain("ест") || isContain("име")) && (isContain("спикер") || isContain("писк") || isContain("пищ")))
+            if ((isContain("включ") || isContain("раб") || isContain("запуск")) && (isContain("ест") || isContain("име")) && (isContain("спикер") || isContain("писк") || isContain("пищ")))
                 ListReason[7] += 2;
             if (isContain("не включ") || isContain("не раб"))
             {
@@ -79,7 +79,7 @@ namespace lab3_FrameProject
             element = element.ToLower();
             if (element.Contains("жд"))
                 return "жд";
-            if (element.Contains("видекарт"))
+            if (element.Contains("видеокарт"))
                 return "видеокарта";
             if (element.Contains("процессор"))
                 return "процессор";
@@ -93,6 +93,7 @@ namespace lab3_FrameProject
         public string Print(Frame f, double price)
         {
             string ans = null;
+            if (f.GetBreakReason() == "null") return "Причина поломки неизвестна. Попробуйте ввести корректный ввод.\r\n";
             ans += "\r\nПричина поломки: " + f.GetBreakReason() + "\r\n";
             ans += "Цена ремонта: " + price + " руб.\r\n";
             ans += "Продолжительность ремонта: " + GetTimeRepair() + " дней\r\n";
