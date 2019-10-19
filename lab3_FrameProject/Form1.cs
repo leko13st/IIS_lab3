@@ -15,13 +15,14 @@ namespace lab3_FrameProject
         public Form1()
         {
             InitializeComponent();
+            //Начальные настройки textBox'а
             textBox1.Text = ">Назовите признаки поломки ПК, например: странные звуки в системе, синий экран смерти и т.д.\r\n>";
             textBox1.SelectionStart = textBox1.Text.Length;
         }
 
-        string pathFile = null;
-        FrameManager frameManager = null;
-        InputHandler inputHandler = null;
+        string pathFile = null; //Путь
+        FrameManager frameManager = null; //Фрейм менеджер
+        InputHandler inputHandler = null; //Обработчик ввода
 
         private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -30,6 +31,7 @@ namespace lab3_FrameProject
 
         private void ВыбратьФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Выбор файла .xml
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 pathFile = openFileDialog1.FileName;
@@ -40,10 +42,10 @@ namespace lab3_FrameProject
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            string str = textBox1.Lines[textBox1.Lines.Length - 1];
+            string str = textBox1.Lines[textBox1.Lines.Length - 1]; //пользовательский ввод
             try
             {
-                textBox1.Text += "\r\n" + inputHandler.Input(str);
+                textBox1.Text += "\r\n" + inputHandler.Input(str); //ввод текста на обработку и получение ответа
             }
             catch { textBox1.Text += "\r\nНет данных! Укажите файл."; }
 

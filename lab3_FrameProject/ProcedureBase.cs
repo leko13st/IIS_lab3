@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace lab3_FrameProject
 {
-    static class ProcedureBase
+    static class ProcedureBase //класс встроенной процедуры
     {
-        static public double GetPrice(string component)
+        static public double GetPrice(string component) //метод получения цены
         {
             double price = 0;
 

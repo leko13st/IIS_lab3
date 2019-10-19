@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace lab3_FrameProject
 {
     [Serializable]
-    public class Frame
+    public class Frame //класс фрейма
     {
         public int FrameID { get; set; }
         public int ParentFrameID { get; set; }

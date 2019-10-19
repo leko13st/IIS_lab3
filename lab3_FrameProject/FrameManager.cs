@@ -8,9 +8,12 @@ namespace lab3_FrameProject
 {
     class FrameManager
     {
-        private Frame[] FrameList { get; set; }
+        private Frame[] FrameList { get; set; } //Список всех фреймов
 
-        public FrameManager(string pathFile)
+        //конструктор, в котором происходит 
+        //1) десериализация
+        //2) назначение фрейму родительского фрейма
+        public FrameManager(string pathFile) 
         {
             FrameList = SerializerXML.SerializeXML(pathFile);
             SetParentFrameLink(FrameList);

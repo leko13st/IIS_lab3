@@ -15,7 +15,7 @@ namespace lab3_FrameProject
             this.fm = fm;
         }
 
-        public string Input(string str)
+        public string Input(string str) //Обработка ввода
         {
             Frame f = LinguistHandler(str);
             string component = DefineBrokeComponent(f.GetBreakReason());
@@ -74,7 +74,7 @@ namespace lab3_FrameProject
             }
         }
 
-        string DefineBrokeComponent(string element)
+        string DefineBrokeComponent(string element) //Определение сломанного компонента
         {
             element = element.ToLower();
             if (element.Contains("жд"))
@@ -90,7 +90,7 @@ namespace lab3_FrameProject
             return null;
         }
 
-        public string Print(Frame f, double price)
+        public string Print(Frame f, double price) //Метод вывода текста 
         {
             string ans = null;
             if (f.GetBreakReason() == "null") return "Причина поломки неизвестна. Попробуйте ввести корректный ввод.\r\n";

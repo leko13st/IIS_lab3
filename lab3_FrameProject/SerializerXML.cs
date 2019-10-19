@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace lab3_FrameProject
 {
-    static class SerializerXML
+    static class SerializerXML //Класс десериализации
     {
         static public Frame[] SerializeXML(string path)
         {
