@@ -15,11 +15,30 @@ namespace lab3_FrameProject
         public Form1()
         {
             InitializeComponent();
+            textBox1.Text = ">";
         }
+
+        string pathFile = null;
+        FrameManager fm = null;
 
         private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ВыбратьФайлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pathFile = openFileDialog1.FileName;
+                fm = new FrameManager(pathFile);
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            textBox1.SelectionStart = textBox1.Text.Length;
+            textBox1.ScrollToCaret();
         }
     }
 }

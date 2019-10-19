@@ -8,9 +8,9 @@ using System.Xml.Serialization;
 
 namespace lab3_FrameProject
 {
-    class SerializerXML
+    static class SerializerXML
     {
-        public Frame[] SerializeXML(string path)
+        static public Frame[] SerializeXML(string path)
         {
             XmlSerializer formatter1 = new XmlSerializer(typeof(Frame[]));
 
