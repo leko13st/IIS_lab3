@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<ArrayOfFrame xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Frame>
+<FrameID>1</FrameID>
+<ParentFrameID>0</ParentFrameID>
+<Name>Поломка пк</Name>
+<BreakReason>null</BreakReason>
+<CostRepair>null</CostRepair>
+<TimeRepair>3</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>2</FrameID>
+<ParentFrameID>1</ParentFrameID>
+<Name>Комп работает, но некорректно/неправильно</Name>
+<BreakReason>[сбой жд, сбой ОС]</BreakReason>
+<CostRepair>null</CostRepair>
+<TimeRepair>default</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>3</FrameID>
+<ParentFrameID>1</ParentFrameID>
+<Name>Комп не работает</Name>
+<BreakReason>null</BreakReason>
+<CostRepair>null</CostRepair>
+<TimeRepair>5</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>4</FrameID>
+<ParentFrameID>2</ParentFrameID>
+<Name>Странный звук/Лаги</Name>
+<BreakReason>Сбой жд</BreakReason>
+<CostRepair>if_needed GetPrice(component)</CostRepair>
+<TimeRepair>default</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>5</FrameID>
+<ParentFrameID>2</ParentFrameID>
+<Name>Лаги/Вирусы/Синий экран смерти</Name>
+<BreakReason>Сбой ОС</BreakReason>
+<CostRepair>if_needed GetPrice(component)</CostRepair>
+<TimeRepair>1</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>6</FrameID>
+<ParentFrameID>3</ParentFrameID>
+<Name>Сбой вентиляторов видеокарты/плохое изображение/чёрный экран</Name>
+<BreakReason>Сбой видеокарты</BreakReason>
+<CostRepair>if_needed GetPrice(component)</CostRepair>
+<TimeRepair>default</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>7</FrameID>
+<ParentFrameID>3</ParentFrameID>
+<Name>Не включается</Name>
+<BreakReason>null</BreakReason>
+<CostRepair>null</CostRepair>
+<TimeRepair>5</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>8</FrameID>
+<ParentFrameID>7</ParentFrameID>
+<Name>Не включается/есть звук спикера</Name>
+<BreakReason>Сбой процессора</BreakReason>
+<CostRepair>if_needed GetPrice(component)</CostRepair>
+<TimeRepair>7</TimeRepair>
+</Frame>
+
+<Frame>
+<FrameID>9</FrameID>
+<ParentFrameID>7</ParentFrameID>
+<Name>Не включается вообще</Name>
+<BreakReason>Сбой блока питания</BreakReason>
+<CostRepair>if_needed GetPrice(component)</CostRepair>
+<TimeRepair>default</TimeRepair>
+</Frame>
+
+</ArrayOfFrame>
