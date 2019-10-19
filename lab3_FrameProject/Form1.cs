@@ -15,7 +15,8 @@ namespace lab3_FrameProject
         public Form1()
         {
             InitializeComponent();
-            textBox1.Text = ">";
+            textBox1.Text = ">Назовите признаки поломки ПК, например: странные звуки в системе, синий экран смерти и т.д.\r\n>";
+            textBox1.SelectionStart = textBox1.Text.Length;
         }
 
         string pathFile = null;
@@ -39,9 +40,14 @@ namespace lab3_FrameProject
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            string str = textBox1.Lines[textBox1.Lines.Length - 2];
-            textBox1.Text += inputHandler.Input(str);
+            string str = textBox1.Lines[textBox1.Lines.Length - 1];
+            try
+            {
+                textBox1.Text += "\r\n" + inputHandler.Input(str);
+            }
+            catch { textBox1.Text += "\r\nНет данных! Укажите файл."; }
 
+            textBox1.Text += "\r\n>";
             textBox1.SelectionStart = textBox1.Text.Length;
             textBox1.ScrollToCaret();
         }

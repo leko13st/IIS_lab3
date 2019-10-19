@@ -47,17 +47,13 @@ namespace lab3_FrameProject
             return BreakReason;
         }
 
-        public double GetCostRepair()
+        public string GetCostRepair()
         {
-            if (CostRepair == "null")
-                return 0;
-            return 0; //Закончить код!
-            //return GetPrice(component);
+            return CostRepair;
         }
-        public int GetTimeRepair()
+        public string GetTimeRepair()
         {
-            //Доделать код!
-            return Convert.ToInt32(TimeRepair);
+            return TimeRepair;
         }
     }
 }
