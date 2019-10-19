@@ -19,7 +19,8 @@ namespace lab3_FrameProject
         }
 
         string pathFile = null;
-        FrameManager fm = null;
+        FrameManager frameManager = null;
+        InputHandler inputHandler = null;
 
         private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -31,12 +32,16 @@ namespace lab3_FrameProject
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 pathFile = openFileDialog1.FileName;
-                fm = new FrameManager(pathFile);
+                frameManager = new FrameManager(pathFile);
+                inputHandler = new InputHandler(frameManager);
             }
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            string str = textBox1.Lines[textBox1.Lines.Length - 2];
+            textBox1.Text += inputHandler.Input(str);
+
             textBox1.SelectionStart = textBox1.Text.Length;
             textBox1.ScrollToCaret();
         }

@@ -30,6 +30,11 @@ namespace lab3_FrameProject
                 }
             }
         }
+
+        public Frame[] GetFrameList()
+        {
+            return FrameList;
+        }
     }
 }
 
