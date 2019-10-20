@@ -16,7 +16,7 @@ namespace lab3_FrameProject
         {
             InitializeComponent();
             //Начальные настройки textBox'а
-            textBox1.Text = ">Назовите признаки поломки ПК, например: странные звуки в системе, синий экран смерти и т.д.\r\n>";
+            textBox1.Text += ">Выберите файл с данными. Меню -> Выбрать файл.\r\n>";
             textBox1.SelectionStart = textBox1.Text.Length;
         }
 
@@ -37,6 +37,8 @@ namespace lab3_FrameProject
                 pathFile = openFileDialog1.FileName;
                 frameManager = new FrameManager(pathFile);
                 inputHandler = new InputHandler(frameManager);
+                textBox1.Text += "\r\n>Назовите признаки поломки ПК, например: странные звуки в системе, синий экран смерти и т.д.\r\n>";
+                textBox1.SelectionStart = textBox1.Text.Length;
             }
         }
 
