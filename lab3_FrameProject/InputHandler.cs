@@ -17,11 +17,12 @@ namespace lab3_FrameProject
 
         public string Input(string str) //Обработка ввода
         {
-            Frame f = LinguistHandler(str);
-            string component = DefineBrokeComponent(f.GetBreakReason());
-            double price = ProcedureBase.GetPrice(component);
+            //Frame f = LinguistHandler(str);
+            //string component = DefineBrokeComponent(f.GetBreakReason());
+            //double price = ProcedureBase.GetPrice(component);
 
-            return Print(f, price);
+            //return Print(f, price);
+            return null;
         }
 
         Frame LinguistHandler(string str) //лингвистичский обработчик текста и вывод подходящего фрейма
@@ -90,23 +91,23 @@ namespace lab3_FrameProject
             return null;
         }
 
-        public string Print(Frame f, double price) //Метод вывода текста 
-        {
-            string ans = null;
-            if (f.GetBreakReason() == "null") return "Причина поломки неизвестна. Попробуйте ввести корректный ввод.\r\n";
-            ans += "\r\nПричина поломки: " + f.GetBreakReason() + "\r\n";
-            ans += "Цена ремонта: " + price + " руб.\r\n";
-            ans += "Продолжительность ремонта: " + GetTimeRepair() + " дней\r\n";
-            return ans;
+        //public string Print(Frame f, double price) //Метод вывода текста 
+        //{
+        //    //string ans = null;
+        //    //if (f.GetBreakReason() == "null") return "Причина поломки неизвестна. Попробуйте ввести корректный ввод.\r\n";
+        //    //ans += "\r\nПричина поломки: " + f.GetBreakReason() + "\r\n";
+        //    //ans += "Цена ремонта: " + price + " руб.\r\n";
+        //    //ans += "Продолжительность ремонта: " + GetTimeRepair() + " дней\r\n";
+        //    //return ans;
 
-            string GetTimeRepair()
-            {
-                while (true)
-                {
-                    if (f.GetTimeRepair() == "default") f = f.GetParentFrame();
-                    else return f.GetTimeRepair();
-                }
-            }
-        }
+        //    //string GetTimeRepair()
+        //    //{
+        //    //    while (true)
+        //    //    {
+        //    //        if (f.GetTimeRepair() == "default") f = f.GetParentFrame();
+        //    //        else return f.GetTimeRepair();
+        //    //    }
+        //    //}
+        //}
     }
 }
