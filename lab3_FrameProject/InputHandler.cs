@@ -46,14 +46,16 @@ namespace lab3_FrameProject
 
             void CheckDefaultValues(Frame[] arrFrames) //Метод соотношения значений default, которые наследуются, к настоящим значениям
             {
+                int current_i = 0;
                 for (int i = 0; i < arrFrames.Length; i++)
                 {
                     for (int j = 0; j < arrFrames[i].Slot.Count; j++)
                     {
                         string value = arrFrames[i].Slot[j].Value;
+                        current_i = i;
                         while (value == "default")
                         {
-                            value = FindValue(i, j);
+                            value = FindValue(current_i, j);
                         }
                     }
                 }
@@ -63,8 +65,11 @@ namespace lab3_FrameProject
                     string ParentName = arrFrames[index].ParentName;
                     for (int i = 0; i < arrFrames.Length; i++)
                     {
-                        if (ParentName == arrFrames[i].ParentName)
+                        if (ParentName == arrFrames[i].Name)
+                        {
+                            current_i = i;
                             return arrFrames[i].Slot[jndex].Value;
+                        }
                     }
                     return null;
                 }
@@ -84,8 +89,6 @@ namespace lab3_FrameProject
                     }
                     catch { inputValues = new string[] { "none" }; }
                     string[] slotValues = slots[i].Value.Split('/');
-
-                    if (slotValues[0] == "default") 
 
                     if (slots[i].Procedure == "null") 
                     {
