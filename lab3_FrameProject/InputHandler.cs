@@ -9,7 +9,7 @@ namespace lab3_FrameProject
     class InputHandler
     {
         FrameManager fm = null;
-        double TruthPercent { get; set; }
+        double TruthPercent { get; set; } //Максимальный процент достоверности фрейма
 
         public InputHandler(FrameManager fm)
         {
@@ -26,7 +26,7 @@ namespace lab3_FrameProject
             TruthPercent = per;
         }
 
-        public List<Frame> FindCorrectFrames(List<string> InputList) //Список подходящих фреймов
+        public List<Frame> FindCorrectFrames(List<string> InputList) //Метод поиска подходящих фреймов
         {
             List<Frame> lf = new List<Frame>();
             List<double> percent = new List<double>();
@@ -44,7 +44,7 @@ namespace lab3_FrameProject
 
             return lf;
 
-            void CheckDefaultValues(Frame[] arrFrames) 
+            void CheckDefaultValues(Frame[] arrFrames) //Метод соотношения значений default, которые наследуются, к настоящим значениям
             {
                 for (int i = 0; i < arrFrames.Length; i++)
                 {
@@ -58,7 +58,7 @@ namespace lab3_FrameProject
                     }
                 }
 
-                string FindValue(int index, int jndex)
+                string FindValue(int index, int jndex) //поиск значения у родителя
                 {
                     string ParentName = arrFrames[index].ParentName;
                     for (int i = 0; i < arrFrames.Length; i++)
@@ -70,7 +70,7 @@ namespace lab3_FrameProject
                 }
             }
 
-            void CheckSlots(List<Slot> slots)
+            void CheckSlots(List<Slot> slots) //Проверка слотов на достоверность
             {
                 double allCheck = 0, trueCheck = 0;
                 for (int i = 0; i < slots.Count; i++)
@@ -109,7 +109,7 @@ namespace lab3_FrameProject
                 double per = trueCheck / allCheck * 100;
                 percent.Add(per);
 
-                int[] ConvertValuesToInt(string[] strArr)
+                int[] ConvertValuesToInt(string[] strArr) //Конвертация массива строк в массив чисел
                 {
                     int[] ans = new int[strArr.Length];
                     for (int i = 0; i < ans.Length; i++)
@@ -123,7 +123,7 @@ namespace lab3_FrameProject
                     return ans;
                 }
 
-                bool CheckValuesWithProcedure(double min, double max, string Procedure)
+                bool CheckValuesWithProcedure(double min, double max, string Procedure) //Метод сравнения слотов, которые определяются внешними процедурами
                 {
                     if (Procedure.Contains(ProcedureBase.GetNameMethod()))
                     {
@@ -135,7 +135,7 @@ namespace lab3_FrameProject
                 }
             }
 
-            void AddCorrectFrames()
+            void AddCorrectFrames() //метод добавления подходящих фреймов
             {
                 for (int i = 0; i < percent.Count; i++)
                 {

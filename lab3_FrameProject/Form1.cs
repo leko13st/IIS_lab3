@@ -44,7 +44,7 @@ namespace lab3_FrameProject
         }
 
         List<List<string>> listValues;
-        void PrepareFrame(FrameManager fm)
+        void PrepareFrame(FrameManager fm) //Подготовка фрейма для заполнения
         {
             listValues = fm.GetListValues();
             SlotCount = listValues.Count;
@@ -65,7 +65,7 @@ namespace lab3_FrameProject
             }
         }
 
-        void FillComboBoxItems(int indexRow, int indexList, bool ComboBox)
+        void FillComboBoxItems(int indexRow, int indexList, bool ComboBox) //Заполнение комбоксов ячеек значениями
         {
             if (ComboBox)
             {
@@ -80,14 +80,14 @@ namespace lab3_FrameProject
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //подтверждение фрейма на обработку
         {
             List<Frame> correctFrames = inputHandler.FindCorrectFrames(InputList());
             double truthPercent = inputHandler.GetTruthPercent();
             PrintFrames(correctFrames, truthPercent);
         }
 
-        List<string> InputList()
+        List<string> InputList() //Считавание значений в dataGridView1 в коллекцию строк
         {
             List<string> list = new List<string>();
             for (int i = 0; i < tmp_list.Count; i++) 
@@ -105,6 +105,7 @@ namespace lab3_FrameProject
 
         List<int> tmp_list = new List<int>();
 
+        //Метод для того чтобы выбирать несколько значений в один слот фрейма.
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             for (int i = SlotCount - 1; i >= 0; i--)
@@ -120,7 +121,7 @@ namespace lab3_FrameProject
                     SlotCount++;
                 }
         }
-        int DefineIndexList(int index)
+        int DefineIndexList(int index) //Метод определния к какому слоту относится выбранное значение
         {
             int k = 0;
             for (int i = 0; i < tmp_list.Count; i++)
@@ -132,7 +133,7 @@ namespace lab3_FrameProject
             return 0;
         }
 
-        void PrintFrames(List<Frame> frames, double truthPercent)
+        void PrintFrames(List<Frame> frames, double truthPercent) //Метод вывода фреймов на экран
         {
             
         }

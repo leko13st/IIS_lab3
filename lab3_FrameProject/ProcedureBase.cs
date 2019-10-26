@@ -22,7 +22,7 @@ namespace lab3_FrameProject
             return price;
         }
 
-        static public string GetNameMethod()
+        static public string GetNameMethod() //метод получения имени метода
         {
             Type t = typeof(ProcedureBase);
             return t.GetMethods()[0].Name;
