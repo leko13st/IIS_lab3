@@ -16,13 +16,12 @@ namespace lab3_FrameProject
         {
             InitializeComponent();
             //Начальные настройки textBox'а
-            //textBox1.Text += ">Выберите файл с данными. Меню -> Выбрать файл.\r\n>";
-            //textBox1.SelectionStart = textBox1.Text.Length;
         }
 
         string pathFile = null; //Путь
         FrameManager frameManager = null; //Фрейм менеджер
         InputHandler inputHandler = null; //Обработчик ввода
+        int SlotCount = 0;
 
         private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -30,7 +29,7 @@ namespace lab3_FrameProject
         }
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Введите знаний в слоты пустого фрейма,\r\n которые вам известны!");
+            MessageBox.Show("Введите знания в слоты пустого фрейма,\r\nкоторые вам известны!");
         }
 
         private void ВыбратьФайлToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,24 +39,81 @@ namespace lab3_FrameProject
             {
                 pathFile = openFileDialog1.FileName;
                 frameManager = new FrameManager(pathFile);
+                PrepareFrame(frameManager);
                 inputHandler = new InputHandler(frameManager);
-                //textBox1.Text += "\r\n>Назовите признаки поломки ПК, например: странные звуки в системе, синий экран смерти и т.д.\r\n>";
-                //textBox1.SelectionStart = textBox1.Text.Length;
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        List<List<string>> listValues;
+        void PrepareFrame(FrameManager fm)
         {
-            string str = textBox1.Lines[textBox1.Lines.Length - 1]; //пользовательский ввод
-            try
-            {
-                textBox1.Text += "\r\n" + inputHandler.Input(str); //ввод текста на обработку и получение ответа
-            }
-            catch { textBox1.Text += "\r\nНет данных! Укажите файл."; }
+            listValues = fm.GetListValues();
+            SlotCount = listValues.Count;
 
-            textBox1.Text += "\r\n>";
-            textBox1.SelectionStart = textBox1.Text.Length;
-            textBox1.ScrollToCaret();
-        }        
+            for (int i = 0; i < listValues.Count; i++)
+            {
+                dataGridView1.Rows.Add();
+                tmp_list.Add(1);
+                if (listValues[i].Count > 0)
+                {
+                    FillComboBoxItems(i, i, true);
+                }
+                else if (listValues[i].Count == 0)
+                {
+                    FillComboBoxItems(i, i, false);
+                }
+                dataGridView1[0, i].Value = fm.GetFrameList()[0].Slot[i].Name;
+            }
+        }
+
+        void FillComboBoxItems(int indexRow, int indexList, bool ComboBox)
+        {
+            if (ComboBox)
+            {
+                var cell = (DataGridViewComboBoxCell)dataGridView1.Rows[indexRow].Cells[1];
+                for (int j = 0; j < listValues[indexList].Count; j++)
+                    cell.Items.Add(listValues[indexList][j]);
+            }
+            else 
+            {
+                DataGridViewTextBoxCell textBoxCell = new DataGridViewTextBoxCell();
+                dataGridView1.Rows[indexRow].Cells[1] = textBoxCell;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        List<int> tmp_list = new List<int>();
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            for (int i = SlotCount - 1; i >= 0; i--)
+                if (dataGridView1[1, i].Selected && (dataGridView1[1, i].Value == null || dataGridView1[1, i].Value.ToString() == ""))
+                {
+                    bool ComboBox = false;
+                    int IndexList = DefineIndexList(i);
+                    if (listValues[IndexList].Count > 0) ComboBox = true;
+
+                    tmp_list[IndexList]++;
+                    dataGridView1.Rows.Insert(i + 1);
+                    FillComboBoxItems(i + 1, DefineIndexList(i + 1), ComboBox);
+                    SlotCount++;
+                }
+
+            int DefineIndexList(int index)
+            {
+                int k = 0;
+                for (int i = 0; i < tmp_list.Count; i++)
+                {
+                    k += tmp_list[i];
+                    if (k > index)
+                        return i;
+                }
+                return 0;
+            }
+        }
     }
 }
