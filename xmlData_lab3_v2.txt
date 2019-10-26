@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<ArrayOfFrame xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Frame>
+<ParentName>null</ParentName>
+<Name>Поломка ПК</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>2 дня</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Поломка ПК</ParentName>
+<Name>Программная неисправность</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>6 коротких</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>default</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Поломка ПК</ParentName>
+<Name>Аппаратная неисправность</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>null</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>5 дней</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Программная неисправность</ParentName>
+<Name>Сбой ПО</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>Лаги/Вирусы/Синий экран смерти</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>default</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>FixComponentPrice(ПО)</Value>
+		<Procedure>if_needed</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>1 день</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Программная неисправность</ParentName>
+<Name>Сбой ОС</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>Системные ошибки/Синий экран смерти/Некорректная загрузка ОС</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>1 короткий</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>FixComponentPrice(ОС)</Value>
+		<Procedure>if_needed</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>default</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Аппаратная неисправность</ParentName>
+<Name>Сбой видеокарты</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>Некорректное изображение/Некорректная работа вентиляторов на видеокарте/Тёмный экран при запуске</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>1 длинный и 2, 3 или 8 коротких</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>FixComponentPrice(видеокарта)</Value>
+		<Procedure>if_needed</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>default</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Аппаратная неисправность</ParentName>
+<Name>Сбой жд</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>Странный звук в системнике/Лаги</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>1 короткий</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>FixComponentPrice(жд)</Value>
+		<Procedure>if_needed</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>3 дня</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Аппаратная неисправность</ParentName>
+<Name>Сбой ОЗУ</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>Тёмный экран при запуске</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>2 коротких</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>FixComponentPrice(ОЗУ)</Value>
+		<Procedure>if_needed</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>2 дня</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+<Frame>
+<ParentName>Аппаратная неисправность</ParentName>
+<Name>Сбой блока питания</Name>
+<Slot>
+	<Slot>
+		<Name>Признак поломки</Name>
+		<Type>text</Type>
+		<Value>Компьютер не включается</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Сигналы BIOS</Name>
+		<Type>text</Type>
+		<Value>Нет сигналов</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Цена ремонта</Name>
+		<Type>double</Type>
+		<Value>FixComponentPrice(блок питания)</Value>
+		<Procedure>if_needed</Procedure>
+	</Slot>
+	<Slot>
+		<Name>Продолжительность ремонта</Name>
+		<Type>text</Type>
+		<Value>4 дня</Value>
+		<Procedure>null</Procedure>
+	</Slot>
+</Slot>
+</Frame>
+
+</ArrayOfFrame>
