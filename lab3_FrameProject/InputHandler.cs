@@ -9,105 +9,140 @@ namespace lab3_FrameProject
     class InputHandler
     {
         FrameManager fm = null;
+        double TruthPercent { get; set; }
 
         public InputHandler(FrameManager fm)
         {
             this.fm = fm;
         }
 
-        public string Input(string str) //Обработка ввода
+        public double GetTruthPercent()
         {
-            //Frame f = LinguistHandler(str);
-            //string component = DefineBrokeComponent(f.GetBreakReason());
-            //double price = ProcedureBase.GetPrice(component);
-
-            //return Print(f, price);
-            return null;
+            return TruthPercent;
         }
 
-        Frame LinguistHandler(string str) //лингвистичский обработчик текста и вывод подходящего фрейма
+        void SetTruthPercent(double per)
         {
-            Frame[] FrameList = fm.GetFrameList();
-            int[] ListReason = new int[FrameList.Length];
+            TruthPercent = per;
+        }
 
-            if ((isContain("звук") || isContain("звуч") || isContain("шум") || isContain("писк")) && (isContain("плох") || isContain("стран")) && !isContain("спик"))
-                ListReason[3]++;
-            if (isContain("лаг"))
-            {
-                ListReason[3]++;
-                ListReason[4]++;
-            }
-            if (isContain("вирус") || (isContain("син") && isContain("экран") && isContain("смерт")))
-                ListReason[4]++;
-            if (isContain("раб") && (isContain("некоррект") || isContain("неправ") || isContain("плох")))
-            {
-                ListReason[3]++;
-                ListReason[4]++;
-            }
-            if ((isContain("сбой") || isContain("плох") && (isContain("раб") || isContain("крут"))) && isContain("вент") && isContain("видеокарт"))
-                ListReason[5] += 2;
-            if ((isContain("плох") || isContain("черн") || isContain("чёрн")) && (isContain("изобр") || isContain("качеств") || isContain("экран")))
-                ListReason[5]++;
-            if ((isContain("включ") || isContain("раб") || isContain("запуск")) && (isContain("ест") || isContain("име")) && (isContain("спикер") || isContain("писк") || isContain("пищ")))
-                ListReason[7] += 2;
-            if (isContain("не включ") || isContain("не раб"))
-            {
-                ListReason[8]++;
-                if (isContain("совсем") || isContain("вообще") || isContain("абсолютно")) ListReason[8] += 3;
-            }
+        public List<Frame> FindCorrectFrames(List<string> InputList) //Список подходящих фреймов
+        {
+            List<Frame> lf = new List<Frame>();
+            List<double> percent = new List<double>();
 
+            Frame[] frames = fm.GetFrameList();
+            CheckDefaultValues(frames);
 
-            int max = 0;
-            for (int i = 0; i < ListReason.Length; i++)
-                if (ListReason.Max() == ListReason[i])
+            for (int i = 0; i < frames.Length; i++)
+            {
+                List<Slot> slots = frames[i].Slot;
+                CheckSlots(slots);
+            }
+            AddCorrectFrames();
+            SetTruthPercent(percent.Max());
+
+            return lf;
+
+            void CheckDefaultValues(Frame[] arrFrames) 
+            {
+                for (int i = 0; i < arrFrames.Length; i++)
                 {
-                    max = i;
-                    break;
+                    for (int j = 0; j < arrFrames[i].Slot.Count; j++)
+                    {
+                        string value = arrFrames[i].Slot[j].Value;
+                        while (value == "default")
+                        {
+                            value = FindValue(i, j);
+                        }
+                    }
                 }
 
-            return FrameList[max];
+                string FindValue(int index, int jndex)
+                {
+                    string ParentName = arrFrames[index].ParentName;
+                    for (int i = 0; i < arrFrames.Length; i++)
+                    {
+                        if (ParentName == arrFrames[i].ParentName)
+                            return arrFrames[i].Slot[jndex].Value;
+                    }
+                    return null;
+                }
+            }
 
-            bool isContain(string s)
+            void CheckSlots(List<Slot> slots)
             {
-                if (str.ToLower().Contains(s))
-                    return true;
-                else return false;
+                double allCheck = 0, trueCheck = 0;
+                for (int i = 0; i < slots.Count; i++)
+                {
+                    string[] inputValues;
+                    try
+                    {
+                        if (InputList[i][InputList[i].Length - 1] == '/')
+                            InputList[i] = InputList[i].Remove(InputList[i].Length - 1);
+                        inputValues = InputList[i].Split('/');
+                    }
+                    catch { inputValues = new string[] { "none" }; }
+                    string[] slotValues = slots[i].Value.Split('/');
+
+                    if (slotValues[0] == "default") 
+
+                    if (slots[i].Procedure == "null") 
+                    {
+                        for (int j = 0; j < inputValues.Length; j++)
+                        {
+                            if (slotValues.Contains(inputValues[j]))
+                                trueCheck++;
+                            allCheck++;
+                        }
+                    }
+                    else if (slots[i].Procedure == "id_needed" && slots[i].Value != "null")
+                    {
+                        int[] values = ConvertValuesToInt(inputValues);
+                        int max = values.Max(), min = values.Min();
+
+                        if (CheckValuesWithProcedure(min, max, slots[i].Procedure))
+                            trueCheck++;
+                        allCheck++;
+                    }
+                }
+                double per = trueCheck / allCheck * 100;
+                percent.Add(per);
+
+                int[] ConvertValuesToInt(string[] strArr)
+                {
+                    int[] ans = new int[strArr.Length];
+                    for (int i = 0; i < ans.Length; i++)
+                    {
+                        try
+                        {
+                            ans[i] = Convert.ToInt32(strArr[i]);
+                        }
+                        catch { }
+                    }
+                    return ans;
+                }
+
+                bool CheckValuesWithProcedure(double min, double max, string Procedure)
+                {
+                    if (Procedure.Contains(ProcedureBase.GetNameMethod()))
+                    {
+                        double price = ProcedureBase.FixComponentPrice(Procedure.ToLower());
+                        if (price >= min && price <= max) 
+                            return true;
+                    }
+                    return false;
+                }
+            }
+
+            void AddCorrectFrames()
+            {
+                for (int i = 0; i < percent.Count; i++)
+                {
+                    if (percent[i] == percent.Max())
+                        lf.Add(frames[i]);
+                }
             }
         }
-
-        string DefineBrokeComponent(string element) //Определение сломанного компонента
-        {
-            element = element.ToLower();
-            if (element.Contains("жд"))
-                return "жд";
-            if (element.Contains("видеокарт"))
-                return "видеокарта";
-            if (element.Contains("процессор"))
-                return "процессор";
-            if (element.Contains("блок") && element.Contains("питан"))
-                return "блок питания";
-            if (element.Contains("ос"))
-                return "ОС";
-            return null;
-        }
-
-        //public string Print(Frame f, double price) //Метод вывода текста 
-        //{
-        //    //string ans = null;
-        //    //if (f.GetBreakReason() == "null") return "Причина поломки неизвестна. Попробуйте ввести корректный ввод.\r\n";
-        //    //ans += "\r\nПричина поломки: " + f.GetBreakReason() + "\r\n";
-        //    //ans += "Цена ремонта: " + price + " руб.\r\n";
-        //    //ans += "Продолжительность ремонта: " + GetTimeRepair() + " дней\r\n";
-        //    //return ans;
-
-        //    //string GetTimeRepair()
-        //    //{
-        //    //    while (true)
-        //    //    {
-        //    //        if (f.GetTimeRepair() == "default") f = f.GetParentFrame();
-        //    //        else return f.GetTimeRepair();
-        //    //    }
-        //    //}
-        //}
     }
 }

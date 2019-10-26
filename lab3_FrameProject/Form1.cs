@@ -15,7 +15,6 @@ namespace lab3_FrameProject
         public Form1()
         {
             InitializeComponent();
-            //Начальные настройки textBox'а
         }
 
         string pathFile = null; //Путь
@@ -83,7 +82,25 @@ namespace lab3_FrameProject
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<Frame> correctFrames = inputHandler.FindCorrectFrames(InputList());
+            double truthPercent = inputHandler.GetTruthPercent();
+            PrintFrames(correctFrames, truthPercent);
+        }
 
+        List<string> InputList()
+        {
+            List<string> list = new List<string>();
+            for (int i = 0; i < tmp_list.Count; i++) 
+                list.Add(null);
+            for (int i = 0; i < SlotCount; i++)
+            {
+                try
+                {
+                    list[DefineIndexList(i)] += dataGridView1[1, i].Value.ToString() + "/";
+                }
+                catch { }
+            }
+            return list;
         }
 
         List<int> tmp_list = new List<int>();
@@ -102,18 +119,22 @@ namespace lab3_FrameProject
                     FillComboBoxItems(i + 1, DefineIndexList(i + 1), ComboBox);
                     SlotCount++;
                 }
-
-            int DefineIndexList(int index)
+        }
+        int DefineIndexList(int index)
+        {
+            int k = 0;
+            for (int i = 0; i < tmp_list.Count; i++)
             {
-                int k = 0;
-                for (int i = 0; i < tmp_list.Count; i++)
-                {
-                    k += tmp_list[i];
-                    if (k > index)
-                        return i;
-                }
-                return 0;
+                k += tmp_list[i];
+                if (k > index)
+                    return i;
             }
+            return 0;
+        }
+
+        void PrintFrames(List<Frame> frames, double truthPercent)
+        {
+            
         }
     }
 }
