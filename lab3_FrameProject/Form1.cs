@@ -17,6 +17,8 @@ namespace lab3_FrameProject
             InitializeComponent();
         }
 
+        List<DataGridView> datas = new List<DataGridView>();
+        List<TextBox> boxs = new List<TextBox>();
         string pathFile = null; //Путь
         FrameManager frameManager = null; //Фрейм менеджер
         InputHandler inputHandler = null; //Обработчик ввода
@@ -136,6 +138,37 @@ namespace lab3_FrameProject
         void PrintFrames(List<Frame> frames, double truthPercent) //Метод вывода фреймов на экран
         {
             
+            CreateTable(frames.Count);
+            for (int k = 0; k < frames.Count; k++)
+            {
+                datas[k].Columns.Add("name","Название слота");
+                datas[k].Columns.Add("value","Значение слота");
+                boxs[k].Text = frames[k].Name + " (Коэффициент достоверности: " + truthPercent + "%)";
+                for (int i = 0; i < frames[k].Slot.Count; i++)
+                {
+                    datas[k].Rows.Add();
+                    datas[k][0, i].Value = frames[k].Slot[i].Name;
+                    datas[k][1, i].Value = frames[k].Slot[i].Value;
+                }
+            }
+        }
+
+        void CreateTable(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                DataGridView data = new DataGridView();
+                data.Location = new Point(400, 80+250*i);
+                data.Width = 400;
+                data.Height = 200;
+                this.Controls.Add(data);
+                datas.Add(data);
+                TextBox box = new TextBox();
+                box.Location = new Point(400, 55 + 250 * i);
+                box.Width = 600;
+                this.Controls.Add(box);
+                boxs.Add(box);
+            }
         }
     }
 }

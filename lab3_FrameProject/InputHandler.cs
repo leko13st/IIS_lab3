@@ -56,7 +56,9 @@ namespace lab3_FrameProject
                         while (value == "default")
                         {
                             value = FindValue(current_i, j);
+                            
                         }
+                        arrFrames[i].Slot[j].Value = value;
                     }
                 }
 
@@ -99,13 +101,16 @@ namespace lab3_FrameProject
                             allCheck++;
                         }
                     }
-                    else if (slots[i].Procedure == "id_needed" && slots[i].Value != "null")
+                    else if (slots[i].Procedure == "if_needed" && slots[i].Value != "null")
                     {
                         int[] values = ConvertValuesToInt(inputValues);
                         int max = values.Max(), min = values.Min();
-
-                        if (CheckValuesWithProcedure(min, max, slots[i].Procedure))
+                        slots[i].Value = ProcedureBase.FixComponentPrice(slots[i].Value).ToString();
+                        if (CheckValuesWithProcedure(min, max, slots[i].Value))
+                        {
+                           
                             trueCheck++;
+                        }
                         allCheck++;
                     }
                 }
@@ -132,7 +137,8 @@ namespace lab3_FrameProject
                     {
                         double price = ProcedureBase.FixComponentPrice(Procedure.ToLower());
                         if (price >= min && price <= max) 
-                            return true;
+                            return true;   
+                                                 
                     }
                     return false;
                 }

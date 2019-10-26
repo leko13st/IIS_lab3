@@ -112,7 +112,7 @@
 	<Slot>
 		<Name>Цена ремонта</Name>
 		<Type>double</Type>
-		<Value>FixComponentPrice(ПО)</Value>
+		<Value>FixComponentPrice(по)</Value>
 		<Procedure>if_needed</Procedure>
 	</Slot>
 	<Slot>
@@ -143,7 +143,7 @@
 	<Slot>
 		<Name>Цена ремонта</Name>
 		<Type>double</Type>
-		<Value>FixComponentPrice(ОС)</Value>
+		<Value>FixComponentPrice(ос)</Value>
 		<Procedure>if_needed</Procedure>
 	</Slot>
 	<Slot>
@@ -236,7 +236,7 @@
 	<Slot>
 		<Name>Цена ремонта</Name>
 		<Type>double</Type>
-		<Value>FixComponentPrice(ОЗУ)</Value>
+		<Value>FixComponentPrice(озу)</Value>
 		<Procedure>if_needed</Procedure>
 	</Slot>
 	<Slot>
